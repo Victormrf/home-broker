@@ -10,3 +10,15 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3000/assets
+
+###
+GET http://localhost:3000/assets/A1
+
+###
+POST http://localhost:3000/wallets
+
+###
+GET http://localhost:3000/wallets
+
+###
+GET http://localhost:3000/wallets/ce1f547c-204f-4c31-8a2e-f866ff1550d5
