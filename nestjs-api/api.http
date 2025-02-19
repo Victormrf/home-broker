@@ -5,7 +5,7 @@ Content-Type: application/json
 
 {
     "name": "Amazon",
-    "symbol": "A1",
+    "symbol": "AMZN",
     "price": 100,
     "image": "AMZN.png"
 }
@@ -17,7 +17,7 @@ Content-Type: application/json
 GET http://localhost:3000/assets
 
 ###
-GET http://localhost:3000/assets/A1
+GET http://localhost:3000/assets/AMZN
 
 ###
 # @name createWallet
@@ -38,7 +38,7 @@ Content-Type: application/json
 
 {
     "assetId": "{{assetId}}",
-    "shares": 100
+    "shares": 194
 }
 
 ###
