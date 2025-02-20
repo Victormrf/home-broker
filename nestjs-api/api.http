@@ -47,7 +47,7 @@ Content-Type: application/json
 
 {
     "walletId": "{{walletId}}",
-    "asset_id": "{{assetId}}",
+    "assetId": "{{assetId}}",
     "shares": 10,
     "price": 100,
     "type": "BUY"

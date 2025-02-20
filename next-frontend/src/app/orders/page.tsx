@@ -1,7 +1,4 @@
-import { AssetShow } from "@/components/AssetShow";
-import { Order } from "@/models";
 import {
-  Button,
   Table,
   TableBody,
   TableCell,
@@ -9,13 +6,11 @@ import {
   TableHeadCell,
   TableRow,
 } from "flowbite-react";
-
-export async function getOrders(walletId: string): Promise<Order[]> {
-  const response = await fetch(
-    `http://localhost:3000/orders?walletId=${walletId}`
-  );
-  return response.json();
-}
+import { AssetShow } from "../../components/AssetShow";
+import { OrderTypeBadge } from "../../components/OrderTypeBadge";
+import { OrderStatusBadge } from "../../components/OrderStatusBadge";
+import { WalletList } from "../../components/WalletList";
+import { getMyWallet, getOrders } from "../../queries/queries";
 
 export default async function OrdersListPage({
   searchParams,
@@ -23,7 +18,19 @@ export default async function OrdersListPage({
   searchParams: Promise<{ wallet_id: string }>;
 }) {
   const { wallet_id } = await searchParams;
+
+  if (!wallet_id) {
+    return <WalletList />;
+  }
+
+  const wallet = await getMyWallet(wallet_id);
+
+  if (!wallet) {
+    return <WalletList />;
+  }
+
   const orders = await getOrders(wallet_id);
+  console.log(orders);
   return (
     <div className="flex flex-col space-y-5 flex-grow">
       <article className="format">
@@ -46,10 +53,11 @@ export default async function OrdersListPage({
                 </TableCell>
                 <TableCell>R$ {order.price}</TableCell>
                 <TableCell>{order.shares}</TableCell>
-                <TableCell>{order.type}</TableCell>
-                <TableCell>{order.status}</TableCell>
                 <TableCell>
-                  <Button color="light">Comprar/vender</Button>
+                  <OrderTypeBadge type={order.type} />
+                </TableCell>
+                <TableCell>
+                  <OrderStatusBadge status={order.status} />
                 </TableCell>
               </TableRow>
             ))}
