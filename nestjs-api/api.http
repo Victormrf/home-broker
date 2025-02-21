@@ -20,6 +20,18 @@ GET http://localhost:3000/assets
 GET http://localhost:3000/assets/AMZN
 
 ###
+POST http://localhost:3000/assets/AMZN/dailies
+Content-Type: application/json
+
+{
+  "date": "2024-12-10",
+  "price": 120
+}
+
+###
+GET http://localhost:3000/assets/AMZN/dailies
+
+###
 # @name createWallet
 POST http://localhost:3000/wallets
 
