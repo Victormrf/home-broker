@@ -23,7 +23,7 @@ func (p *Producer) Publish(msg interface{}, key []byte, topic string) error {
 		Key:   key,
 		TopicPartition: kafka.TopicPartition{
 			Topic:     &topic,
-			Partition: kafka.PartitionAny,
+			Partition: -1,
 		},
 	}
 
