@@ -5,11 +5,11 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/Victormrf/home-broker/go-homebroker-simulator/internal/market/entity"
-	ckafka "github.com/confluentinc/confluent-kafka-go/kafka"
 	"github.com/Victormrf/home-broker/go-homebroker-simulator/internal/infra/kafka"
 	"github.com/Victormrf/home-broker/go-homebroker-simulator/internal/market/dto"
+	"github.com/Victormrf/home-broker/go-homebroker-simulator/internal/market/entity"
 	"github.com/Victormrf/home-broker/go-homebroker-simulator/internal/market/transformer"
+	ckafka "github.com/confluentinc/confluent-kafka-go/kafka"
 )
 
 func main() {
@@ -27,15 +27,18 @@ func main() {
 	// - group.id: identificador do grupo de consumo
 	// - auto.offset.reset: de onde começar a ler as mensagens
 	consumerConfig := &ckafka.ConfigMap{
-		"bootstrap.servers": "localhost:9094",
-		"group.id":          "trade",
+		"bootstrap.servers": "127.0.0.1:9094",
+		"group.id":         "trade",
 		"auto.offset.reset": "latest",
+		"security.protocol": "plaintext",
+		"enable.auto.commit": "false",
 	}
 
 	// Configuração do produtor Kafka
 	// - bootstrap.servers: endereço do broker Kafka
 	producerConfig := &ckafka.ConfigMap{
-		"bootstrap.servers": "localhost:9094",
+		"bootstrap.servers": "127.0.0.1:9094",
+		"security.protocol": "plaintext",
 	}
 
 	// Inicializa produtor e consumidor Kafka
