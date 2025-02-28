@@ -1,5 +1,5 @@
 export class AuthResult {
   accessToken: string;
-  userId: number;
+  _id: string;
   username: string;
 }

@@ -1,4 +1,4 @@
 export class SignInData {
-  userId: number;
+  _id: string;
   username: string;
 }
