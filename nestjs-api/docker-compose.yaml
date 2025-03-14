@@ -7,7 +7,7 @@ services:
     volumes:
       - .:/home/node/app
     ports:
-      - 3002:3002
+      - 3003:3002
     extra_hosts:
       - host.docker.internal:host-gateway
 
