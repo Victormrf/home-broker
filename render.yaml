@@ -1,0 +1,33 @@
+services:
+  frontend:
+    name: home-broker-frontend
+    type: web
+    env: docker
+    dockerfilePath: ./next-frontend/Dockerfile
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        value: https://api.your-app.onrender.com
+
+  api:
+    name: home-broker-api
+    type: web
+    env: docker
+    dockerfilePath: ./nestjs-api/Dockerfile
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+
+  broker:
+    name: home-broker-simulator
+    type: web
+    env: docker
+    dockerfilePath: ./go-homebroker-simulator/Dockerfile
+
+  mongodb:
+    name: home-broker-db
+    type: pserv
+    env: docker
+    disk:
+      name: data
+      mountPath: /data/db
+      sizeGB: 10
