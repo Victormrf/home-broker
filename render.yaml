@@ -18,13 +18,9 @@ services:
     name: api
     env: docker
     buildCommand: docker build -t api ./nestjs-api
-    startCommand: docker run api
     envVars:
       - key: DATABASE_URL
-        fromService:
-          type: pserv
-          name: mongodb
-          property: connectionString
+        value: mongodb://mongodb:27017
       - key: KAFKA_BROKERS
         value: "kafka:9092"
 
@@ -33,7 +29,6 @@ services:
     name: broker
     env: docker
     buildCommand: docker build -t broker ./go-homebroker-simulator
-    startCommand: docker run broker
     envVars:
       - key: KAFKA_BROKERS
         value: "kafka:9092"
@@ -43,7 +38,6 @@ services:
     name: frontend
     env: docker
     buildCommand: docker build -t frontend ./next-frontend
-    startCommand: docker run frontend
     envVars:
       - key: NEXT_PUBLIC_API_URL
         value: https://api.onrender.com
